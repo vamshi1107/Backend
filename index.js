@@ -7,6 +7,6 @@ app.get("/",(req,res)=>{
     res.send("This is  server of vamshi addanki ")
 })
 
-app.listen(port,()=>{
-    console.log("Listening at 1107")
+app.listen(port,(data,err)=>{
+    console.log("Listening at "+port)
 })
