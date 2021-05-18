@@ -4,11 +4,16 @@
   "description": "my server for projects",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js"
   },
   "author": "vamshi addanki",
   "license": "ISC",
   "dependencies": {
     "express": "^4.17.1"
+  }
+  ,
+  "engines": {
+    "node": "12.18.2"
   }
 }
