@@ -9,6 +9,11 @@
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Farro&display=swap" rel="stylesheet">
     <title>Server</title>
+    <script>
+        fetch("http://localhost:5000/test/getCars").then(res => res.json())
+            .then(data => { console.log(data) })
+    </script>
+
     <style>
         #vid {
             width: 60%;

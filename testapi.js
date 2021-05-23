@@ -10,7 +10,8 @@ const testRouter=express.Router()
 
 testRouter.get("/getCars",async (req,res)=>{
      var result=[]
-     var cur= await mongoose.connection.db.collection("test").find()
+     var con= await mongoose.connection
+     var cur=con.db.collection("test").find()
      await cur.forEach(ele=>{
          result.push(ele)
      })
