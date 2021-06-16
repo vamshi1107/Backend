@@ -29,7 +29,7 @@ var transporter = nodemailer.createTransport({
       mailOptions["to"]=req.query.to
       mailOptions["html"]="<b>"+req.query.body+"</b>"
       if(req.query.subject){
-          mailOptions["to"]=req.query.subject
+          mailOptions["subject"]=req.query.subject
       }
       transporter.sendMail(mailOptions, function(error, info){
         if (error) {
