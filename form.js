@@ -25,10 +25,24 @@ formrouter.post("/add",async (req,res)=>{
 formrouter.post("/get",async (req,res)=>{
          const con=await mongoose.connection
          const collection =con.db.collection("myforms_forms")
-         const data=req.body
-          var rc=await collection.findOne({"formid":data.formid})
-         
-         res.send(rc)
+         const data=req.body  
+         var all;
+         var rc;
+         await collection.find({},async (err,dt)=>{
+          if(err){
+             res.send({"err":true})
+          } 
+          else{
+               all=await dt.toArray()
+               all.forEach(ele=>{
+                 if(ele.formid===data.formid){
+                   rc=ele
+                 }
+               })
+               res.send(rc)
+          }
+         })
+
 
 })
 
