@@ -12,7 +12,8 @@ const port=process.env.PORT || 5000
 
 const indexPage=fs.readFileSync("index.html").toString()
 const uri="mongodb://vamshi:Avk1234.@cluster0-shard-00-00.ayh3k.mongodb.net:27017,cluster0-shard-00-01.ayh3k.mongodb.net:27017,cluster0-shard-00-02.ayh3k.mongodb.net:27017/myFirstDatabase?ssl=true&replicaSet=atlas-ttn3b4-shard-0&authSource=admin&retryWrites=true&w=majority"
-app.use(cors({origin:"*"}))
+
+app.use(cors()) 
 app.use(express.json())
 
 

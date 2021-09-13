@@ -16,7 +16,6 @@ formrouter.post("/add",async (req,res)=>{
           else{
             result=await collection.insertOne(data)
           }
-        console.log(result)
          res.send({"count":result.modifiedCount})
 
 })
@@ -42,9 +41,25 @@ formrouter.post("/get",async (req,res)=>{
                res.send(rc)
           }
          })
+})
+
+formrouter.post("/getall",async (req,res)=>{
+         const con=await mongoose.connection
+         const collection =con.db.collection("myforms_forms")
+         const data=req.body  
+         var all;
+         var rc;
+         await collection.find({},async (err,dt)=>{
+          if(err){
+             res.send({"err":true})
+          } 
+          else{
+               all=await dt.toArray()
+               res.send(all)
+          }
+         })
 
 
 })
-
 
 module.exports=formrouter
