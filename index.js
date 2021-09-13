@@ -20,7 +20,7 @@ const options= {
   "origin": allowedOrigins
 };
 
-app.use(cors(options)) 
+app.use(cors()) 
 app.use(express.json())
 
 
