@@ -58,6 +58,22 @@ formrouter.post("/get",async (req,res)=>{
          })
 })
 
+formrouter.post("/remove",async (req,res)=>{
+         const con=await mongoose.connection
+         const collection =con.db.collection("myforms_forms")
+         const data=req.body  
+         var q={"formid":data.formid}
+         await collection.deleteOne(q,(err,dt)=>{
+            if(err){
+              res.send(false)
+            }
+            else{
+              res.send(true)
+            }
+         })
+          
+})
+
 formrouter.post("/getall",async (req,res)=>{
          const con=await mongoose.connection
          const collection =con.db.collection("myforms_forms")
