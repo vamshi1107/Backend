@@ -8,10 +8,13 @@ const mongo = require("mongodb").MongoClient
 const parser=require("body-parser")
 const mongoose =require("mongoose")
 const app=express()
+var dotenv = require('dotenv').config()
+
 const port=process.env.PORT || 5000
 
 const indexPage=fs.readFileSync("index.html").toString()
-const uri="mongodb://vamshi:Avk1234.@cluster0-shard-00-00.ayh3k.mongodb.net:27017,cluster0-shard-00-01.ayh3k.mongodb.net:27017,cluster0-shard-00-02.ayh3k.mongodb.net:27017/myFirstDatabase?ssl=true&replicaSet=atlas-ttn3b4-shard-0&authSource=admin&retryWrites=true&w=majority"
+
+const uri=process.env.uri
 
 
 const allowedOrigins = ['http://localhost:3000',"*"];
