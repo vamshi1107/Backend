@@ -153,4 +153,23 @@ formrouter.post("/getall",async (req,res)=>{
 
 })
 
+formrouter.post("/getbyEmail",async (req,res)=>{
+         const con=await mongoose.connection
+         const collection =con.db.collection("myforms_forms")
+         const data=req.body  
+         var all;
+         var rc;
+         await collection.find({"user":data.user},async (err,dt)=>{
+          if(err){
+             res.send({"err":true})
+          } 
+          else{
+               all=await dt.toArray()
+               res.send(all)
+          }
+         })
+
+
+})
+
 module.exports=formrouter
