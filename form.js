@@ -74,6 +74,7 @@ formrouter.post("/getresp",async (req,res)=>{
                    await collection.findOne(q,async (err2,dt2)=>{
                      if(!err){
                        resp=dt2
+                       form["ruser"]=resp.ruser
                        form["feilds"].map(ele=>{
                         ele.type==1?ele.value=getValue(resp,ele.fid):
                                     ele.value=getValue(resp,ele.fid),
