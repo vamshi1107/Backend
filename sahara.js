@@ -108,6 +108,22 @@ router.post("/getliked", async (req, res) => {
     }
 })
 
+router.post("/isliked", async (req, res) => {
+    const mongo = await mongoose.connection
+    const liked = mongo.db.collection("sahara_liked")
+    var user = `${req.body.user}`
+    var product = `${req.body.product}`
+    if (user.length > 0) {
+        await liked.find({ "user":user,"product":product},async (err,data)=>{
+               var dt=await data.toArray()
+               res.send({ "result": dt.length>0 })
+        })
+    }
+    else {
+        res.send({ "result": false })
+    }
+})
+
 
 router.post("/addcart", async (req, res) => {
     const mongo = await mongoose.connection
@@ -155,6 +171,15 @@ router.post("/removecart", async (req, res) => {
      var product = `${req.body.product}`
      const cart=mongo.db.collection("sahara_cart")
      var result=await cart.deleteOne({"user":user,"product":product})
+     res.send({"count":result.deletedCount})
+})
+
+router.post("/removeliked", async (req, res) => {
+     const mongo=await mongoose.connection
+     var user = `${req.body.user}`
+     var product = `${req.body.product}`
+     const liked=mongo.db.collection("sahara_liked")
+     var result=await liked.deleteOne({"user":user,"product":product})
      res.send({"count":result.deletedCount})
 })
 
