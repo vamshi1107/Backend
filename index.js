@@ -1,16 +1,21 @@
 const express = require("express")
+const fs =require("fs")
+const cors=require('cors')
+const parser=require("body-parser")
+var dotenv = require('dotenv').config()
+
+const mongo = require("mongodb").MongoClient
+const mongoose =require("mongoose")
+
 const emailRouter = require("./mail")
 const testRouter = require("./testapi")
 const formrouter = require("./form")
-const fs =require("fs")
-const cors=require('cors')
-const mongo = require("mongodb").MongoClient
-const parser=require("body-parser")
-const mongoose =require("mongoose")
-const app=express()
-var dotenv = require('dotenv').config()
+const saharaRouter=require("./sahara")
 
-const port=process.env.PORT || 5000
+const app=express()
+
+
+const port=process.env.PORT || 9000
 
 const indexPage=fs.readFileSync("index.html").toString()
 
@@ -50,8 +55,10 @@ connection.on("open",()=>{
 app.use("/mail",emailRouter)
 app.use("/test",testRouter)
 app.use("/form",formrouter)
+app.use("/sahara",saharaRouter)
 
 app.get("/",(req,res)=>{
+  console.log(res)
   res.send(indexPage)
 })
 

@@ -5,7 +5,6 @@ const { all } = require('./mail')
 
 formrouter =express.Router()
 
-
 formrouter.post("/add",async (req,res)=>{
          const con=await mongoose.connection
          const collection =con.db.collection("myforms_forms")
