@@ -310,6 +310,7 @@ router.post("/placeorder", async (req, res) => {
   data["status"] = "pending";
   data["addressId"] = body.address;
   data["address"] = address;
+  data["message"] = "Processing Your Order";
   let result = await col.insertOne(data);
   if (result.insertedCount > 0) {
     await mongo.db.collection("sahara_cart").deleteMany({ user: body.user });
